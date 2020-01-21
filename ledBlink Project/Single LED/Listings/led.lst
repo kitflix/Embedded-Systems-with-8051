@@ -1,0 +1,49 @@
+C51 COMPILER V9.59.0.0   LED                                                               08/06/2018 16:33:06 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN .\Objects\led.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\led.l
+                    -st) TABS(2) OBJECT(.\Objects\led.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          // for 11.0592MHz Crystal
+   3          void delay(unsigned int count)
+   4          {
+   5   1        unsigned int i;
+   6   1        while(count)
+   7   1        {
+   8   2          i = 115;
+   9   2          while(i > 0)
+  10   2             i--;
+  11   2          count--;
+  12   2        }
+  13   1      }
+  14          sbit led1 = P2^0;
+  15          void main()
+  16          {
+  17   1        P2 = 0x00;
+  18   1        while(1)
+  19   1        {
+  20   2          led1 = 0;
+  21   2          delay(500);
+  22   2          led1 = 1;
+  23   2          delay(500);
+  24   2        }
+  25   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     48    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,94 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/20/2019  20:18:10  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE relayport.obj TO relayWithULN2003
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  relayport.obj (RELAYPORT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  relayWithULN2003 (RELAYPORT)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0019H     UNIT         ?PR?_DELAY?RELAYPORT
+            CODE    0819H     0012H     UNIT         ?PR?MAIN?RELAYPORT
+            CODE    082BH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   relayWithULN2003 (RELAYPORT)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?RELAYPORT
+
+?PR?MAIN?RELAYPORT
+  +--> ?PR?_DELAY?RELAYPORT
+
+
+
+SYMBOL TABLE OF MODULE:  relayWithULN2003 (RELAYPORT)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        RELAYPORT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0800H         PUBLIC        _delay
+  B:00A0H.0       PUBLIC        relay
+  C:0819H         PUBLIC        main
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        count
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/20/2019  20:18:10  PAGE 2
+
+
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0800H         LINE#         4
+  C:0800H         LINE#         5
+  C:0800H         LINE#         7
+  C:0804H         LINE#         8
+  C:0804H         LINE#         9
+  C:0808H         LINE#         10
+  C:0808H         LINE#         11
+  C:0811H         LINE#         12
+  C:0816H         LINE#         13
+  C:0818H         LINE#         14
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:0819H         LINE#         15
+  C:0819H         LINE#         16
+  C:0819H         LINE#         18
+  C:081BH         LINE#         19
+  C:0822H         LINE#         21
+  C:0824H         LINE#         22
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        RELAYPORT
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 002BH BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=58
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

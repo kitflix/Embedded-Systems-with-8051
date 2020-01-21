@@ -1,0 +1,46 @@
+C51 COMPILER V9.60.0.0   RELAYPORT                                                         08/20/2019 20:18:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RELAYPORT
+OBJECT MODULE PLACED IN relayport.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE relayport.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          sbit relay = P2^0;
+   4          void delay(unsigned int count)
+   5          {
+   6   1        unsigned int i;
+   7   1        while(count)
+   8   1        {
+   9   2          i = 115;
+  10   2          while(i > 0)
+  11   2             i--;
+  12   2          count--;
+  13   2        }
+  14   1      }
+  15          void main()
+  16          {
+  17   1        
+  18   1        relay = 1;
+  19   1        delay(1000);
+  20   1        
+  21   1        relay = 0;
+  22   1        delay(1000);
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     43    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
