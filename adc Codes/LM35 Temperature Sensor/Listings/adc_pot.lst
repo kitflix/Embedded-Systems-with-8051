@@ -1,0 +1,84 @@
+C51 COMPILER V9.60.0.0   ADC_POT                                                           08/20/2019 19:27:21 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ADC_POT
+OBJECT MODULE PLACED IN .\Objects\adc_pot.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE adc_pot.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\a
+                    -dc_pot.lst) TABS(2) OBJECT(.\Objects\adc_pot.obj)
+
+line level    source
+
+   1          #include <REG51.H>
+   2          #include "lcd.c"
+   3          
+   4          sbit rd = P3^5;                  //Read signal 
+   5          sbit wr = P3^6;                  //Write signal 
+   6          sbit intr = P3^7;                //INTR signal 
+   7          
+   8          unsigned char adc_val;    // 8 - bit read the adc
+   9          unsigned int mv;    // 16 bit read or calculate the voltage
+  10          
+  11          void conv();                     //Start of conversion function
+  12          void read();                     //Read ADC function
+  13          
+  14          unsigned int temp;
+  15          void main()
+  16          {
+  17   1          delay_ms(100);
+  18   1          intr = 1; // make this pin work as INPUT
+  19   1          lcd_init();
+  20   1          lcd_out(1,1,"Temp:");
+  21   1          lcd_out(2,1,"Voltage: ");   // mV
+  22   1          
+  23   1          
+  24   1          while(1)
+  25   1          {                           //Forever loop
+  26   2            conv();                  //Start conversion
+  27   2            read();   
+  28   2              
+  29   2            lcd_print(1,6,adc_val,4);   // 0 - 255
+  30   2            
+  31   2            //mv = adc_val * 10;  //  use it when using LM35
+  32   2            
+  33   2            //temp = mv / 10;
+  34   2            
+  35   2            //lcd_print(2,13,mv,4);
+  36   2            
+  37   2          }
+  38   1      }
+  39          
+  40          void conv()
+  41          {  
+  42   1              wr = 0;                      //Make WR low
+  43   1              wr = 1;                      //Make WR high
+  44   1              while(intr == 1)
+  45   1              {
+  46   2              
+  47   2              }
+  48   1      }
+  49          
+  50          void read()     // function to read the Analog to digital converted value
+  51          {
+  52   1      
+  53   1              rd = 1;                      //Make RD low
+  54   1              rd = 0;
+C51 COMPILER V9.60.0.0   ADC_POT                                                           08/20/2019 19:27:21 PAGE 2   
+
+  55   1              adc_val = P1;          //Read ADC port
+  56   1              delay_ms(250);
+  57   1              rd = 1;                      //Make RD high
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    763    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

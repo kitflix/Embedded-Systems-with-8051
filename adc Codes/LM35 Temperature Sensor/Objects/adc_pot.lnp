@@ -1,0 +1,3 @@
+".\Objects\adc_pot.obj" 
+TO ".\Objects\adc_pot" 
+PRINT(".\Listings\adc_pot.m51")

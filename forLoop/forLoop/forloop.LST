@@ -1,0 +1,61 @@
+C51 COMPILER V9.00   FORLOOP                                                               01/21/2019 19:04:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE FORLOOP
+OBJECT MODULE PLACED IN forloop.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE forloop.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          // for 11.0592MHz Crystal
+   3          void delay(unsigned int count)
+   4          {
+   5   1        unsigned int i;
+   6   1        while(count)
+   7   1        {
+   8   2          i = 115;
+   9   2          while(i > 0)
+  10   2             i--;
+  11   2          count--;
+  12   2        }
+  13   1      }
+  14          
+  15          void main()
+  16          {
+  17   1        unsigned char i;
+  18   1        while(1)
+  19   1        {
+  20   2          for(i=0;i<=9;i++)
+  21   2          {
+  22   3           P2 = 0x00;
+  23   3           delay(500);
+  24   3           P2 = 0xFF;
+  25   3           delay(500);
+  26   3          }
+  27   2          delay(1000);
+  28   2          
+  29   2          for(i=0;i<=9;i++)
+  30   2          {
+  31   3           P2 = 0xAA;
+  32   3           delay(500);
+  33   3           P2 = 0x55;
+  34   3           delay(500);
+  35   3          }
+  36   2          delay(1000);
+  37   2        }
+  38   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     81    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
