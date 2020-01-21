@@ -1,0 +1,164 @@
+C51 COMPILER V9.59.0.0   LCDBASIC                                                          08/06/2018 16:10:18 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LCDBASIC
+OBJECT MODULE PLACED IN lcdbasic.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcdbasic.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit rs = P1^0;
+   3          sbit en = P1^1;
+   4          
+   5          // copy paste this in every code
+   6          void delay(unsigned int count)
+   7          {
+   8   1        unsigned int i;
+   9   1        while(count)
+  10   1        {
+  11   2          i = 115;
+  12   2          while(i > 0)
+  13   2            i--;
+  14   2          count--;
+  15   2        }
+  16   1      }
+  17          
+  18          void lcd_data(unsigned char abc)
+  19          {
+  20   1        rs = 1;
+  21   1        P2 = abc;
+  22   1        en = 1;
+  23   1        delay(50);
+  24   1        en = 0;
+  25   1      }
+  26          void lcd_cmd(unsigned char abc)
+  27          {
+  28   1        rs = 0;
+  29   1        P2 = abc;
+  30   1        en = 1;
+  31   1        delay(50);
+  32   1        en = 0;
+  33   1      }
+  34          void lcd_init()
+  35          {
+  36   1          lcd_cmd(0x38);        //LCD 4-bit mode and 2 lines.
+  37   1          lcd_cmd(0x01);
+  38   1          lcd_cmd(0x06);
+  39   1          lcd_cmd(0x0E);
+  40   1          lcd_cmd(0x80);
+  41   1          lcd_cmd(0x0C);
+  42   1      }
+  43          void lcd_clear()
+  44          {
+  45   1          lcd_cmd(0x01);
+  46   1      }
+  47          void lcd_cursor(char row, char column)  
+  48          {
+  49   1          switch (row) 
+  50   1          {
+  51   2              case 1: lcd_cmd(0x80 + column - 1); break;
+  52   2              case 2: lcd_cmd(0xc0 + column - 1); break;
+  53   2              case 3: lcd_cmd(0x94 + column - 1); break;
+  54   2              case 4: lcd_cmd(0xd4 + column - 1); break;
+  55   2              default: break;
+C51 COMPILER V9.59.0.0   LCDBASIC                                                          08/06/2018 16:10:18 PAGE 2   
+
+  56   2          }
+  57   1      }
+  58          void lcd_out(char row, char column, char *str)// lcd_out(1,1,451);
+  59          {
+  60   1          lcd_cursor(row, column);
+  61   1          while(*str != '\0')
+  62   1          {
+  63   2              lcd_data(*str);
+  64   2              str++;
+  65   2          }
+  66   1      }
+  67          
+  68          void lcd_print(char row, char coloumn, unsigned int value, int digits)
+  69          {
+  70   1          unsigned int temp;
+  71   1          unsigned int unit;
+  72   1          unsigned int tens;
+  73   1          unsigned int hundred;
+  74   1          unsigned int thousand;
+  75   1          unsigned int million;
+  76   1          unsigned char flag=0;
+  77   1      
+  78   1          if(row==0||coloumn==0)
+  79   1          {
+  80   2              lcd_cmd(0x80);
+  81   2          }
+  82   1          else
+  83   1          {
+  84   2              lcd_cursor(row,coloumn);
+  85   2          }
+  86   1          if(digits==5 || flag==1)
+  87   1          {
+  88   2              million=value/10000+48;
+  89   2              lcd_data(million);
+  90   2              flag=1;
+  91   2          }
+  92   1          if(digits==4 || flag==1)
+  93   1          {
+  94   2              temp = value/1000;
+  95   2              thousand = temp%10 + 48;
+  96   2              lcd_data(thousand);
+  97   2              flag=1;
+  98   2          }
+  99   1          if(digits==3 || flag==1)
+ 100   1          {
+ 101   2              temp = value/100;
+ 102   2              hundred = temp%10 + 48;
+ 103   2              lcd_data(hundred);
+ 104   2              flag=1;
+ 105   2          }
+ 106   1          if(digits==2 || flag==1)
+ 107   1          {
+ 108   2              temp = value/10;
+ 109   2              tens = temp%10 + 48;
+ 110   2              lcd_data(tens);
+ 111   2              flag=1;
+ 112   2          }
+ 113   1          if(digits==1 || flag==1)
+ 114   1          {
+ 115   2              unit = value%10 + 48;
+ 116   2              lcd_data(unit);
+ 117   2          }
+C51 COMPILER V9.59.0.0   LCDBASIC                                                          08/06/2018 16:10:18 PAGE 3   
+
+ 118   1          if(digits>5)
+ 119   1          {
+ 120   2              lcd_data('E');
+ 121   2          }        
+ 122   1      }
+ 123          void main()
+ 124          {
+ 125   1        int count = 0;
+ 126   1        lcd_init();
+ 127   1        lcd_out(1,1,"Welcome");
+ 128   1        delay(1000);
+ 129   1        lcd_clear();
+ 130   1        while(1)
+ 131   1        { 
+ 132   2          lcd_out(1,1,"Seconds:");
+ 133   2          lcd_print(2,1,count,2); // 0035
+ 134   2          count++;
+ 135   2          delay(1000);
+ 136   2        }
+ 137   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    406    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

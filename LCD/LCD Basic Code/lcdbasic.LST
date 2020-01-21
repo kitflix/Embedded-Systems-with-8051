@@ -1,0 +1,80 @@
+C51 COMPILER V9.59.0.0   LCDBASIC                                                          08/06/2018 15:53:25 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LCDBASIC
+OBJECT MODULE PLACED IN lcdbasic.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcdbasic.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit rs = P1^0;
+   3          sbit en = P1^1;
+   4          
+   5          // copy paste this in every code
+   6          void delay(unsigned int count)
+   7          {
+   8   1        unsigned int i;
+   9   1        while(count)
+  10   1        {
+  11   2          i = 115;
+  12   2          while(i > 0)
+  13   2            i--;
+  14   2          count--;
+  15   2        }
+  16   1      }
+  17          
+  18          void lcd_data(unsigned char abc)
+  19          {
+  20   1        rs = 1;
+  21   1        P2 = abc;
+  22   1        en = 1;
+  23   1        delay(50);
+  24   1        en = 0;
+  25   1      }
+  26          void lcd_cmd(unsigned char abc)
+  27          {
+  28   1        rs = 0;
+  29   1        P2 = abc;
+  30   1        en = 1;
+  31   1        delay(50);
+  32   1        en = 0;
+  33   1      }
+  34          
+  35          void main()
+  36          {
+  37   1        lcd_cmd(0x38);  // initialize
+  38   1        lcd_cmd(0x02);  // return home
+  39   1        lcd_cmd(0x01);  // clear display
+  40   1        lcd_cmd(0x0C);  // Display ON cursor OFF
+  41   1        lcd_cmd(0x06);    
+  42   1        lcd_cmd(0xC7);  // 0xC0 address of 2nd Row
+  43   1        
+  44   1        lcd_data('W');
+  45   1        lcd_data('e');
+  46   1        lcd_data('l');
+  47   1        lcd_data('c');
+  48   1        lcd_data('o');
+  49   1        lcd_data('m');
+  50   1        lcd_data('e');
+  51   1        while(1)
+  52   1        {
+  53   2        
+  54   2        }
+  55   1      }
+C51 COMPILER V9.59.0.0   LCDBASIC                                                          08/06/2018 15:53:25 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    116    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

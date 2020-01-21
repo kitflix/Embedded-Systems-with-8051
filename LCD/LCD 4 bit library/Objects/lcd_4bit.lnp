@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\lcd_4bit" 
+PRINT(".\Listings\lcd_4bit.m51")

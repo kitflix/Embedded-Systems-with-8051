@@ -1,0 +1,1 @@
+Make a trafic Signal with delay of 10sec for RED, 5sec for YELLOW, and 8sec for GREEN 

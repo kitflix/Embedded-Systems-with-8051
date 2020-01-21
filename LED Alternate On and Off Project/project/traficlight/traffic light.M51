@@ -1,0 +1,105 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/23/2019  16:41:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE traffic.obj TO traffic light
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  traffic.obj (TRAFFIC)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  traffic light (TRAFFIC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0026H     UNIT         ?PR?MAIN?TRAFFIC
+            CODE    0826H     0019H     UNIT         ?PR?_DELAY?TRAFFIC
+            CODE    083FH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   traffic light (TRAFFIC)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TRAFFIC
+
+?PR?MAIN?TRAFFIC
+  +--> ?PR?_DELAY?TRAFFIC
+
+
+
+SYMBOL TABLE OF MODULE:  traffic light (TRAFFIC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TRAFFIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0826H         PUBLIC        _delay
+  B:00A0H.2       PUBLIC        green
+  B:00A0H.1       PUBLIC        yellow
+  C:0800H         PUBLIC        main
+  B:00A0H.0       PUBLIC        red
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2019  16:41:17  PAGE 2
+
+
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        count
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0826H         LINE#         5
+  C:0826H         LINE#         6
+  C:0826H         LINE#         8
+  C:082AH         LINE#         9
+  C:082AH         LINE#         10
+  C:082EH         LINE#         11
+  C:082EH         LINE#         12
+  C:0837H         LINE#         13
+  C:083CH         LINE#         14
+  C:083EH         LINE#         15
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:0800H         LINE#         17
+  C:0800H         LINE#         18
+  C:0800H         LINE#         19
+  C:0803H         LINE#         20
+  C:0803H         LINE#         21
+  C:0803H         LINE#         22
+  C:0805H         LINE#         23
+  C:080CH         LINE#         24
+  C:080EH         LINE#         25
+  C:0810H         LINE#         26
+  C:0817H         LINE#         27
+  C:0819H         LINE#         28
+  C:081BH         LINE#         29
+  C:0822H         LINE#         30
+  C:0824H         LINE#         31
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TRAFFIC
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 003FH BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=78
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
