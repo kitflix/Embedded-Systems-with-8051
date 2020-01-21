@@ -1,0 +1,128 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/04/2017  09:39:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE ledblink.obj TO ledblink
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  ledblink.obj (LEDBLINK)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  ledblink (LEDBLINK)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0019H     UNIT         ?PR?_DELAY?LEDBLINK
+            CODE    0819H     0013H     UNIT         ?PR?TIMER_DELAY?LEDBLINK
+            CODE    082CH     000CH     UNIT         ?PR?MAIN?LEDBLINK
+            CODE    0838H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   ledblink (LEDBLINK)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?LEDBLINK
+
+?PR?MAIN?LEDBLINK                -----    -----
+  +--> ?PR?TIMER_DELAY?LEDBLINK
+
+?PR?TIMER_DELAY?LEDBLINK         0008H    0002H
+
+
+
+SYMBOL TABLE OF MODULE:  ledblink (LEDBLINK)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LEDBLINK
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:0800H         PUBLIC        _delay
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/04/2017  09:39:54  PAGE 2
+
+
+  C:0819H         PUBLIC        timer_delay
+  C:082CH         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  B:0090H.0       PUBLIC        led
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        count
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0800H         LINE#         3
+  C:0800H         LINE#         4
+  C:0800H         LINE#         6
+  C:0804H         LINE#         7
+  C:0804H         LINE#         8
+  C:0808H         LINE#         9
+  C:0808H         LINE#         10
+  C:0811H         LINE#         11
+  C:0816H         LINE#         12
+  C:0818H         LINE#         13
+  -------         ENDPROC       _DELAY
+  -------         PROC          TIMER_DELAY
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0819H         LINE#         15
+  C:0819H         LINE#         16
+  C:0819H         LINE#         18
+  C:081CH         LINE#         20
+  C:081FH         LINE#         21
+  C:0822H         LINE#         23
+  C:0824H         LINE#         24
+  C:0827H         LINE#         25
+  C:0829H         LINE#         26
+  C:082BH         LINE#         27
+  -------         ENDPROC       TIMER_DELAY
+  -------         PROC          MAIN
+  C:082CH         LINE#         29
+  C:082CH         LINE#         30
+  C:082CH         LINE#         31
+  C:082CH         LINE#         32
+  C:082CH         LINE#         33
+  C:082EH         LINE#         34
+  C:0831H         LINE#         35
+  C:0833H         LINE#         36
+  C:0836H         LINE#         37
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LEDBLINK
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?LEDBLINK
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0038H BYTE ( 2%) *
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/04/2017  09:39:54  PAGE 3
+
+
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=71
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

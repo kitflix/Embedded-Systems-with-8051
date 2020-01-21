@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\ratish\OneDrive\VTS\Courses\04 8051 Embedded Systems\All Codes\09 LCD Basic Code\lcdbasic.uvproj
+Project File Date:  10/15/2015
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling lcdbasic.c...
+LCDBASIC.C(126): warning C280: 'b': unreferenced local variable
+linking...
+Program Size: data=19.0 xdata=0 code=502
+"lcdbasic" - 0 Error(s), 1 Warning(s).
